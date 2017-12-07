@@ -1,11 +1,18 @@
 ---
-
+# Composer package for openseadragon
 openseadragon_composer_item: "islandora/openseadragon:dev-8.x-1.x"
+# Root of drupal instance
 openseadragon_composer_root: "/var/www/html/drupal"
+# Sites to install openseadragon into
 openseadragon_sites:
   - default
+# Version of openseadragon library
 openseadragon_version: 2.2.1
+# Temporary directory to download library to.
 openseadragon_temp_folder: /tmp
-
+# Check whether there is already a IIIF address registered.
+# Default action is to overwrite whatever is there with the
+# configured address
 openseadragon_iiiv_set_var: false
+# Address for your IIIF server
 openseadragon_iiiv_server:
