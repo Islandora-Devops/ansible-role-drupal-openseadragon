@@ -1,5 +1,9 @@
 ---
 
+- name: Use drush_path if defined
+  set_fact: openseadragon_drush_path="{{ drush_path }}"
+  when: drush_path != ''
+
 - include: install.yml
   tags:
     - openseadragon
