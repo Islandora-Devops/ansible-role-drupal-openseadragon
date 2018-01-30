@@ -25,6 +25,11 @@ openseadragon_sites:
   - default
 ```
 
+Drush path (note: if a preceding task sets drush_path, it will override the default value):
+```
+openseadragon_drush_path: /usr/local/bin/drush
+```
+
 Version of Openseadragon library to install:
 ```
 openseadragon_version: 2.2.1
@@ -48,8 +53,9 @@ openseadragon_iiiv_server:
 ## Dependencies
 
 * Drupal 8
+* Drush
 * Working IIIF image server (like [islandora.cantaloupe](https://github.com/Islandora-DevOps/ansible-role-cantaloupe))
-  
+
 ## Example Playbook
 
     - hosts: webservers
