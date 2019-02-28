@@ -2,16 +2,12 @@
 
 - name: Check if modules are enabled
   shell: "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web pm-list --format=json"
-  args:
-    chdir: "{{ openseadragon_composer_root }}/web"
   register: openseadragon_enable_module_status
   changed_when: False
   check_mode: no
 
 - name: Enable modules
   shell: "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web -y en openseadragon"
-  args:
-    chdir: "{{ openseadragon_composer_root }}/web"
   when: (openseadragon_enable_module_status.stdout|from_json).openseadragon.status != 'Enabled'
 
 - name: Copy openseadragon library definition to correct location.
@@ -24,8 +20,6 @@
 - name: Check IIIF URL
   command:
     "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cget openseadragon.settings iiif_server --format=json"
-  args:
-    chdir: "{{ openseadragon_composer_root }}/web"
   when: openseadragon_iiiv_set_var
   changed_when: false
   failed_when: false
@@ -34,8 +28,6 @@
 - name: Set IIIF URL
   command:
     "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cset openseadragon.settings iiif_server {{ openseadragon_iiiv_server }} --yes"
-  args:
-    chdir: "{{ openseadragon_composer_root }}/web"
   when: >
     not openseadragon_iiiv_status.skipped|default(false) and
     (openseadragon_iiiv_status.rc == 1 or
