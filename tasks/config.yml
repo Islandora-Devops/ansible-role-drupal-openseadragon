@@ -1,7 +1,7 @@
 ---
 
 - name: Check if modules are enabled
-  shell: "{{ openseadragon_drush_path }} pm-list --format=json"
+  shell: "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web pm-list --format=json"
   args:
     chdir: "{{ openseadragon_composer_root }}/web"
   register: openseadragon_enable_module_status
@@ -9,7 +9,7 @@
   check_mode: no
 
 - name: Enable modules
-  shell: "{{ openseadragon_drush_path }} -y en openseadragon"
+  shell: "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web -y en openseadragon"
   args:
     chdir: "{{ openseadragon_composer_root }}/web"
   when: (openseadragon_enable_module_status.stdout|from_json).openseadragon.status != 'Enabled'
@@ -23,7 +23,7 @@
 
 - name: Check IIIF URL
   command:
-    "{{ openseadragon_drush_path }} cget openseadragon.settings iiif_server --format=json"
+    "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cget openseadragon.settings iiif_server --format=json"
   args:
     chdir: "{{ openseadragon_composer_root }}/web"
   when: openseadragon_iiiv_set_var
@@ -33,7 +33,7 @@
 
 - name: Set IIIF URL
   command:
-    "{{ openseadragon_drush_path }} cset openseadragon.settings iiif_server {{ openseadragon_iiiv_server }} --yes"
+    "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cset openseadragon.settings iiif_server {{ openseadragon_iiiv_server }} --yes"
   args:
     chdir: "{{ openseadragon_composer_root }}/web"
   when: >
