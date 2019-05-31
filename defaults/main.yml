@@ -2,7 +2,7 @@
 
 openseadragon_drush_path: /usr/local/bin/drush
 
-openseadragon_composer_item: "islandora/openseadragon:dev-8.x-1.x"
+openseadragon_composer_item: "islandora/openseadragon:1.0.0"
 openseadragon_composer_root: "/var/www/html/drupal"
 openseadragon_sites:
   - default
