@@ -20,15 +20,15 @@
 - name: Check IIIF URL
   command:
     "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cget openseadragon.settings iiif_server --format=json"
-  when: openseadragon_iiiv_set_var
+  when: openseadragon_iiif_set_var
   changed_when: false
   failed_when: false
-  register: openseadragon_iiiv_status
+  register: openseadragon_iiif_status
 
 - name: Set IIIF URL
   command:
-    "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cset openseadragon.settings iiif_server {{ openseadragon_iiiv_server }} --yes"
+    "{{ openseadragon_drush_path }} --root {{ openseadragon_composer_root }}/web cset openseadragon.settings iiif_server {{ openseadragon_iiif_server }} --yes"
   when: >
-    not openseadragon_iiiv_status.skipped|default(false) and
-    (openseadragon_iiiv_status.rc == 1 or
-    (openseadragon_iiiv_status.stdout|from_json)['openseadragon.settings:iiif_server'] != openseadragon_iiiv_server)
+    not openseadragon_iiif_status.skipped|default(false) and
+    (openseadragon_iiif_status.rc == 1 or
+    (openseadragon_iiif_status.stdout|from_json)['openseadragon.settings:iiif_server'] != openseadragon_iiif_server)

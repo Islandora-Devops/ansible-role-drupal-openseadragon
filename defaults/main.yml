@@ -9,5 +9,5 @@ openseadragon_sites:
 openseadragon_version: 2.4.1
 openseadragon_temp_folder: /tmp
 
-openseadragon_iiiv_set_var: false
-openseadragon_iiiv_server:
+openseadragon_iiif_set_var: false
+openseadragon_iiif_server:
