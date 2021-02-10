@@ -42,12 +42,12 @@ openseadragon_temp_folder: /tmp
 
 Check for an existing IIIF server configuration setting
 ```
-openseadragon_iiiv_set_var: false
+openseadragon_iiif_set_var: false
 ```
 
 What to set the IIIF server to:
 ```
-openseadragon_iiiv_server:
+openseadragon_iiif_server:
 ```
 
 ## Dependencies
